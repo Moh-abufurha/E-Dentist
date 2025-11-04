@@ -1,6 +1,6 @@
 🩺 Medical AI Voice Assistant
 
-An intelligent real-time bilingual (Arabic/English) medical voice assistant** that listens, understands, and speaks naturally. It helps patients **book, cancel, verify, and reschedule appointments** using **Gemini 2.5 Flash** and a local **SQLite database**.
+An intelligent real-time bilingual (Arabic/English) medical voice assistant that listens, understands, and speaks naturally. It helps patients **book, cancel, verify, and reschedule appointments** using **Gemini 2.5 Flash** and a local **SQLite database**.
 
 ---
  🚀 Features
@@ -151,13 +151,5 @@ Conversation Memory
 | `reschedule_appointment_tool` | Reschedules appointment with new date/time.           |
 
 
-
-💖 Built with:
-
-* Gemini 2.5 Flash (LLM & TTS)
-* Google SpeechRecognition
-* SQLite3
-* Python 3.11
-* Pydub + SoundDevice + SimpleAudio
 
 
