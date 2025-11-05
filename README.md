@@ -69,8 +69,8 @@ medical-agent/
 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/medical-agent.git
-cd medical-agent
+https://github.com/Moh-abufurha/E-Dentist.git
+
 ```
 
 2️⃣ Install Dependencies
