@@ -1,6 +1,7 @@
 🩺 Medical AI Voice Assistant
 
-An intelligent real-time bilingual (Arabic/English) medical voice assistant that listens, understands, and speaks naturally. It helps patients **book, cancel, verify, and reschedule appointments** using **Gemini 2.5 Flash** and a local **SQLite database**.
+An intelligent real-time bilingual (Arabic/English) medical voice assistant that listens, understands, and speaks naturally. It helps patients **book, cancel, verify, and reschedule appointments** using **Gemini 2.5 Flash** and a local **SQLite database** 
+It also includes a Tkinter-based desktop interface (app.py) for easy interaction with the assistant in real-time..
 
 ---
  🚀 Features
@@ -12,6 +13,8 @@ An intelligent real-time bilingual (Arabic/English) medical voice assistant that
 * 🧾 Intelligent conversation memory system per patient
 * 🧩 Modular agentic architecture (tools, memory, logic)
 * 💬 Bilingual interaction (Arabic ↔ English)
+* 🖥️ Simple desktop **GUI (Tkinter)** for starting, stopping, and viewing conversations in real-time.
+
 
 ---
 
@@ -19,14 +22,15 @@ An intelligent real-time bilingual (Arabic/English) medical voice assistant that
 
 ```
 medical-agent/
-├── agent.py              # LLM logic, reasoning, and tool-calling system
-├── voice_realtime.py     # Real-time voice loop (STT → LLM → TTS)
-├── auth.py               # Patient verification logic
-├── db_init.py            # Database setup and seeding
-├── tools.py              # Tools for booking, cancelling, rescheduling
-├── memory_manager.py     # Stores and retrieves past conversation turns
-├── test_db.py            # View database contents
-└── README.md             # Documentation
+├── app.py               # Graphical user interface (Tkinter) for real-time interaction
+├── agent.py             # LLM logic, reasoning, and tool-calling system
+├── voice_realtime.py    # Real-time voice loop (STT → LLM → TTS)
+├── auth.py              # Patient verification logic
+├── db_init.py           # Database setup and seeding
+├── tools.py             # Tools for booking, cancelling, rescheduling
+├── memory_manager.py    # Stores and retrieves past conversation turns
+├── test_db.py           # View database contents
+└── README.md            # Documentation
 ```
 
 ---
@@ -48,6 +52,10 @@ medical-agent/
  4️⃣ Text-to-Speech (TTS)
 
 * Responds naturally using Gemini’s **Callisto (English)** or **Callirrhoe (Arabic)** voices.
+
+ 5️⃣ User Interface (GUI)
+* The `app.py` file provides a friendly graphical interface to interact with the assistant, record audio, and display conversation logs.
+ 
 
 ---
 
@@ -90,7 +98,7 @@ numpy
 pydub
 ```
 
-### 3️⃣ Set Environment Variables
+3️⃣ Set Environment Variables
 
 Create a `.env` file:
 
@@ -104,22 +112,20 @@ Or set it directly:
 export GEMINI_API_KEY=your_api_key_here
 ```
 
-### 4️⃣ Initialize Database
+4️⃣ Initialize Database
 
 ```bash
 python db_init.py
 ```
 
-### 5️⃣ Run the Assistant
+5️⃣ Run the GUI Version
+
+If you prefer a graphical interface:
 
 ```bash
-python voice_realtime.py
-```
+python app.py
 
 ---
-
-
-
  🧬 Database Schema
 
  Patients
