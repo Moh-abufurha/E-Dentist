@@ -11,7 +11,7 @@ from google import genai
 from google.genai import types as gtypes
 from agent import run_agent_stream
 
-os.environ["GEMINI_API_KEY"] = "AIzaSyCxG0o8YfEcMxEC_b1EkAh_zaDzgLECbE4"
+os.environ["GEMINI_API_KEY"] = "AIzaSyDe0k7U0qhQqUCSvW82Eugw9-YqTlfTXU0"
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", os.getenv("GEMINI_API_KEY", ""))
 if not GOOGLE_API_KEY:
     raise RuntimeError("Set GOOGLE_API_KEY (or GEMINI_API_KEY) in environment for TTS.")
@@ -60,7 +60,7 @@ def text_to_speech_bytes(text: str, lang: str, sample_rate: int = SAMPLE_RATE) -
 
     try:
         resp = client.models.generate_content(
-            model="models/gemini-2.5-flash-preview-tts",
+            model="models/gemini-2.0-flash-exp-tts",
             contents=[{"role": "user", "parts": [{"text": text}]}],
             config={
                 "response_modalities": ["AUDIO"],
@@ -72,7 +72,7 @@ def text_to_speech_bytes(text: str, lang: str, sample_rate: int = SAMPLE_RATE) -
             },
         )
 
-        # ✅ تحقق من وجود الرد ومحتواه
+
         if not resp or not getattr(resp, "candidates", None):
             print("⚠️ Gemini-TTS: no candidates returned.")
             return b""
