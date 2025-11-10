@@ -16,11 +16,15 @@ def init_db():
     );
     """)
 
+
+
     cur.execute("""
     CREATE TABLE IF NOT EXISTS services (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
-        doctor_name TEXT NOT NULL
+        doctor_name TEXT NOT NULL,
+        date TEXT NOT NULL,
+        time TEXT NOT NULL
     );
     """)
 
@@ -60,6 +64,8 @@ def init_db():
         created_at TEXT DEFAULT (datetime('now'))
     );
     """)
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_patients_phone ON patients(phone);")
+
 
     conn.commit()
     conn.close()
@@ -69,38 +75,25 @@ def init_db():
 def seed_db():
     with sqlite3.connect(DB_NAME) as conn:
         cur = conn.cursor()
-
-        cur.execute("DELETE FROM patients;")
-        cur.execute("DELETE FROM services;")
-        cur.execute("DELETE FROM appointments;")
-
-        patients = [
-            ("Moh Ahmed", "0790000001", 1),
-            ("Sara Hussain", "0790000002", 1),
-        ]
-        cur.executemany(
-            "INSERT INTO patients (full_name, phone, verified) VALUES (?, ?, ?);",
-            patients,
-        )
+        confirm=input(" ⚠️ -YOU WANT TO DELETE ALL OF DATABASES-IF WANTED PRESS Y ⚠️ ?")
+        if confirm == "y"or confirm == "Y":
+            cur.execute("DELETE FROM patients;")
+            cur.execute("DELETE FROM services;")
+            cur.execute("DELETE FROM appointments;")
 
         services = [
-            ("Teeth Check", "Dr. Mahdi"),
-            ("Teeth Cleaning", "Dr. Ahmed"),
-            ("Dental Filling", "Dr. Sara"),
+            ("Teeth Check", "Dr. SAMMER ", "2025-11-23", "11:30 AM"),
+            ("Teeth Cleaning", "Dr. JOHN ", "2025-11-23", "05:15 PM"),
+            ("Dental Filling", "Dr. SARA", "2025-11-23", "01:30 AM"),
+            ("Tooth Extraction", "Dr. FARAH", "2025-11-23", "11:30 AM"),
         ]
+
         cur.executemany(
-            "INSERT INTO services (name, doctor_name) VALUES (?, ?);",
+            "INSERT INTO services (name, doctor_name, date, time) VALUES (?, ?, ?, ?);",
             services,
         )
-
-        cur.execute("""
-            INSERT INTO appointments 
-            (patient_id, service_id, date, time, status, verification_code)
-            VALUES (?, ?, ?, ?, ?, ?)
-        """, (1, 1, "2025-11-10", "10:00", "confirmed", "1234"))
-
         conn.commit()
-        print("🌱 Seed data added successfully.")
+        print(" data added successfully.")
 
 
 if __name__ == "__main__":
